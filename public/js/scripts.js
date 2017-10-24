@@ -1,7 +1,11 @@
 $(document).ready(function() {
 
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+  })
+
   // Save an article
-  $(document).on("click", ".btn-save", function(e){
+  $(document).on("click", ".save", function(e){
     e.preventDefault();
 
     // Get the id of the data attribute from the parent div
@@ -13,9 +17,7 @@ $(document).ready(function() {
       url: "/save/" + articleId,
     }).then(function(data) {
       if (data.saved) {
-        Materialize.toast('Article added to Saved Articles', 3000);
         $("[data-id='" + data._id + "']").remove();
-        $grid.masonry();
       }
     });
   });
@@ -33,9 +35,7 @@ $(document).ready(function() {
       url: "/unsave/" + articleId,
     }).then(function(data) {
       if (data.saved) {
-        Materialize.toast('Article Removed from Saved Articles', 3000);
-        $("[data-id='" + data._id + "']").remove(); 
-        $grid.masonry();
+        $("[data-id='" + data._id + "']").remove();
       }
     });
   });

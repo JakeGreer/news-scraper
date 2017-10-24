@@ -1,4 +1,20 @@
 <div id="articles" class="articles">
+  <div class="modal fade" id="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">This article has been added to your saved articles!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info"><a href="/saved" id="modal-save">Saved Articles</a></button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 {{#if articles}}
     <div class="row">
       {{#each articles}}
@@ -6,10 +22,10 @@
             <div class="news-section">
               <span><a class="title" href="{{this.link}}">{{this.title}}</a></span>
             </div><!--/.news-section -->
-            <div class="card-action">
+            <div class="article-links">
               <a href="{{this.link}}" target="_blank">View Article</a>
               ||
-              <a href="#" class="btn-save">Save Article</a>
+              <a href="#" class="save" data-toggle="modal" data-target="#myModal">Save Article</a>
             </div>
         </div><!--/.article -->
       {{/each}}

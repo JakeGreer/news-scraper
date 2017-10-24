@@ -29,3 +29,13 @@ body {
 .article:nth-child(even) {
     background: #eee;
 }
+
+#modal-save {
+    text-decoration: none!important;
+    color: #fff;
+}
+
+#default-message {
+    font-size: 30px;
+    color:#fff;
+}

@@ -79,41 +79,52 @@ app.get("/scrape", function(req, res) {
   });
 });
 
-// Route for saving an article
-// app.put("/save/:id", function(req, res) {
-//   db.Article
-//   .findOneAndUpdate({ _id: req.params.id }, { saved: true })
-//   .then(function(results) {
-//     res.json(results);
-//   })
-//   .catch(function(err) {
-//     res.json(err);
-//   });
-// });
+// This route changes the saved bool to true. This route is called when save is clicked.
+app.put("/save/:id", function(req, res) {
+  db.Article.findOneAndUpdate(
+    {
+     _id: req.params.id 
+    }, 
+    { 
+      saved: true 
+    }
+  ).then(function(results) {
+    res.json(results);
+  }).catch(function(err) {
+    res.json(err);
+  });
+});
 
-// Route for unsaving an article
-// app.put("/unsave/:id", function(req, res) {
-//   db.Article
-//   .findOneAndUpdate({ _id: req.params.id }, { saved: false })
-//   .then(function(results) {
-//     res.json(results);
-//   })
-//   .catch(function(err) {
-//     res.json(err);
-//   });
-// });
+// This route changes the saved bool to false. This route is called when unsave is clicked.
+app.put("/unsave/:id", function(req, res) {
+  db.Article.findOneAndUpdate(
+    { 
+      _id: req.params.id 
+    }, 
+    { 
+      saved: false 
+    }
+  ).then(function(results) {
+    res.json(results);
+  })
+  .catch(function(err) {
+    res.json(err);
+  });
+});
 
 // Route for all saved articles
-// app.get("/saved", function(req, res) {
-//   db.Article
-//   .find({ saved: true })
-//   .then(function(results) {
-//     res.render('saved', { articles: results } );
-//   })
-//   .catch(function(err) {
-//     res.json(err);
-//   });
-// });
+app.get("/saved", function(req, res) {
+  db.Article.find(
+    { 
+      saved: true 
+    }
+  ).then(function(results) {
+    res.render('saved', { articles: results } );
+  })
+  .catch(function(err) {
+    res.json(err);
+  });
+});
 
 // Set the app to listen on port 3000
 app.listen(3000, function() {

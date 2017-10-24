@@ -1,0 +1,27 @@
+<div id="articles" class="articles"></div>
+{{#if articles}}
+    <div class="row">
+      {{#each articles}}
+        <div class="article col-md-12" data-id="{{this._id}}">
+            <div class="news-section">
+              <span><a class="title" href="{{this.link}}">{{this.title}}</a></span>
+            </div><!--/.news-section -->
+            <div class="card-action">
+              <a href="{{this.link}}" target="_blank">View Article</a>
+              ||
+              <a href="#" class="save">Save Article</a>
+            </div>
+        </div><!--/.article -->
+      {{/each}}
+    </div><!--/.row -->
+
+{{else}}
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+        <span id="default-message">There are no Articles</span>
+    </div>
+  </div><!-- /.row -->
+
+{{/if}}
+</div><!-- /.articles -->
