@@ -1,11 +1,12 @@
+var mongoose   = require("mongoose");
+var request    = require("request");
 var bodyParser = require('body-parser')
 var cheerio    = require("cheerio");
 var exphbs     = require('express-handlebars');
 var express    = require("express");
-var mongoose   = require("mongoose");
-var request    = require("request");
 
-// Require all models
+
+// Require the models
 var db = require("./models");
 
 // Initialize Express
@@ -27,8 +28,8 @@ mongoose.connect("mongodb://localhost/mongoscraper", {
 app.get("/", function(req, res) {
   db.Article
   .find({saved: false})
-  .then(function(dbArticle) {
-    res.render('index', { articles: dbArticle } );
+  .then(function(results) {
+    res.render('index', { articles: results } );
   })
   .catch(function(err) {
     // If an error occurred, send it to the client
@@ -40,9 +41,9 @@ app.get("/", function(req, res) {
 app.get("/all", function(req, res) {
   db.Article
   .find({})
-  .then(function(dbArticle) {
+  .then(function(results) {
     // If we were able to successfully find Articles, send them back to the client
-    res.json(dbArticle);
+    res.json(results);
   })
   .catch(function(err) {
     // If an error occurred, send it to the client
@@ -52,27 +53,28 @@ app.get("/all", function(req, res) {
 
 // Scrape data and place it into the mongodb
 app.get("/scrape", function(req, res) {
-  request("http://www.ocregister.com/", function(error, response, html) {
+
+  request("http://abc7.com/news/", function(error, response, html) {
     // Load the html body from request into cheerio
     var $ = cheerio.load(html);
-    // For each element with a "title" class
-    $(".article-title").each(function(i, element) {
-      // Crete an empty object
-      var articleObj = {};
+    // For each element with a "headline" class
+    $("div.headline-list-item").each(function(i, element) {
+      // Crete an empty object to hold the article title and image
+      var article = {};
+      // Save the text of the element in a "title" variable
+      article.title = $(element).children().hasClass("headline");
+      // Save the href into the link variable
+      article.link = $(element).children().attr("href");
 
-      // Save the title and href of each item in the current element
-      articleObj.title = $(element).attr("title");
-      articleObj.link = $(element).attr("href");
-
-      // Insert the data in the articles collection
-      db.Article
-      .create(articleObj)
-      .then(function(dbArticle) {
-      })
-      .catch(function(err) {
-        // If an error occurred, send it to the client
-        res.json(err);
-      });
+      // Insert the data in the articles collection in the mongoDB
+      db.Article.create(article)
+        .then(function(results) {
+        })
+        //sends back error
+        .catch(function(err) {
+        // res.json(err);
+        console.log(err);
+        });
 
     });
 
@@ -85,8 +87,8 @@ app.get("/scrape", function(req, res) {
 app.put("/save/:id", function(req, res) {
   db.Article
   .findOneAndUpdate({ _id: req.params.id }, { saved: true })
-  .then(function(dbArticle) {
-    res.json(dbArticle);
+  .then(function(results) {
+    res.json(results);
   })
   .catch(function(err) {
     res.json(err);
@@ -97,8 +99,8 @@ app.put("/save/:id", function(req, res) {
 app.put("/unsave/:id", function(req, res) {
   db.Article
   .findOneAndUpdate({ _id: req.params.id }, { saved: false })
-  .then(function(dbArticle) {
-    res.json(dbArticle);
+  .then(function(results) {
+    res.json(results);
   })
   .catch(function(err) {
     res.json(err);
@@ -109,8 +111,8 @@ app.put("/unsave/:id", function(req, res) {
 app.get("/saved", function(req, res) {
   db.Article
   .find({ saved: true })
-  .then(function(dbArticle) {
-    res.render('saved', { articles: dbArticle } );
+  .then(function(results) {
+    res.render('saved', { articles: results } );
   })
   .catch(function(err) {
     res.json(err);

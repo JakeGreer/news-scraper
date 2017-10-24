@@ -5,27 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mongo Scraper</title>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="/css/materialize.min.css" rel="stylesheet">
-  <link href="/css/styles.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>   
-  <script src="/js/materialize.min.js"></script>
-  <script src="/js/masonry.pkgd.min.js"></script>
-  <script src="/js/scripts.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link href="/css/style.css" rel="stylesheet"> 
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+  <script src="/js/scripts.js"></script>  
 </head>
 <body>
-  <div class="navbar-fixed">
-    <nav class="site-navbar blue darken-4">
-      <div class="nav-wrapper">
-        <a href="/" class="brand-logo"><i class="material-icons left">library_books</i> Mongo News Scraper</a>
-        <ul class="right">
-          <li><a href="/"><i class="material-icons left tiny">home</i> Home</a></li>
-          <li><a href="/saved"><i class="material-icons left tiny">save</i> Saved Articles</a></li>
-          <li><a href="/scrape" id="btn-scrape"class="btn waves-effect waves-light orange"><i class="material-icons left tiny">clear_all</i> Scrape Articles</a></li>
+  <div class="row">
+    <div class="col-md-12">
+
+
+          <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/saved">Saved Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/scrape">Scrape Articles</a>
+          </li>
         </ul>
-      </div><!--/.nav-wrapper -->
-    </nav><!--/.site-navbar -->
-  </div><!-- /.navbar-fixed -->
+      </div>
+    </nav>
+
+  <main role="main">
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="text-center display-3">Mongo Scraper</h1>
+      </div>
+    </div>
 
   <div class="container">
     {{{ body }}}
