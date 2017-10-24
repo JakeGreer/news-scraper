@@ -9,30 +9,26 @@ $(document).ready(function() {
     e.preventDefault();
 
     // Get the id of the data attribute from the parent div
-    var articleId = $(this).parents('.article-item').data("id");
+    var id = $(this).parents('.article').data("id");
 
-    // Ajax PUT request for the save route
-    $.ajax({
-      method: "PUT",
-      url: "/save/" + articleId,
-    }).then(function(data) {
-      if (data.saved) {
-        $("[data-id='" + data._id + "']").remove();
-      }
-    });
+      // Ajax PUT request for the save route
+      $.ajax({
+        method: "PUT",
+        url: "/save/" + id,
+      });
   });
 
   // UnSave an article
-  $(document).on("click", ".btn-unsave", function(e){
+  $(document).on("click", ".unsave", function(e){
     e.preventDefault();
 
     // Get the id of the data attribute from the parent div
-    var articleId = $(this).parents('.article-item').data("id");
+    var id = $(this).parents('.article-item').data("id");
 
-    // Ajax PUT request for the save route
+    // Ajax PUT request for the unsave route
     $.ajax({
       method: "PUT",
-      url: "/unsave/" + articleId,
+      url: "/unsave/" + id,
     }).then(function(data) {
       if (data.saved) {
         $("[data-id='" + data._id + "']").remove();

@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mariomelchor/mongo-scraper.git"
+    "url": "git+https://github.com/JakeGreer/news-scraper"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mariomelchor/mongo-scraper/issues"
+    "url": "https://github.com/JakeGreer/news-scraper/issues"
   },
-  "homepage": "https://github.com/mariomelchor/mongo-scraper#readme",
+  "homepage": "https://github.com/JakeGreer/news-scraper#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "cheerio": "^1.0.0-rc.2",

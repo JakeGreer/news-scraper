@@ -119,6 +119,7 @@ app.get("/saved", function(req, res) {
       saved: true 
     }
   ).then(function(results) {
+    console.log(results);
     res.render('saved', { articles: results } );
   })
   .catch(function(err) {
