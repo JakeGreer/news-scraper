@@ -58,13 +58,13 @@ app.get("/scrape", function(req, res) {
     // Load the html body from request into cheerio
     var $ = cheerio.load(html);
     // For each element with a "headline" class
-    $("div.headline-list-item").each(function(i, element) {
+    $(".headline").each(function(i, element) {
       // Crete an empty object to hold the article title and image
       var article = {};
       // Save the text of the element in a "title" variable
-      article.title = $(element).children().hasClass("headline");
+      article.title = $(element).text();
       // Save the href into the link variable
-      article.link = $(element).children().attr("href");
+      article.link = $(element).parent().attr("href");
 
       // Insert the data in the articles collection in the mongoDB
       db.Article.create(article)
@@ -77,9 +77,7 @@ app.get("/scrape", function(req, res) {
         });
 
     });
-
     res.redirect("/");
-    
   });
 });
 

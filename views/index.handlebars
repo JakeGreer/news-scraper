@@ -1,17 +1,16 @@
 <div id="articles" class="articles-container">
 {{#if articles}}
-
     <div class="row">
       {{#each articles}}
-        <div class="article-item col-md-6 col-lg-4" data-id="{{this._id}}">
+        <div class="article col-md-12" data-id="{{this._id}}">
             <div class="news-section">
-              <span class="card-title"><a href="{{this.link}}">{{this.title}}</a></span>
+              <span class="title"><a href="{{this.link}}">{{this.title}}</a></span>
               <a href="{{this.link}}" target="_blank">View Article</a>
             </div><!--/.news-section -->
             <div class="card-action">
-              <a href="#" class="orange-text btn-save">Save Article</a>
-            </div><!--/.card-action -->
-        </div><!--/.article-item -->
+              <a href="#" class="btn-save">Save Article</a>
+            </div>
+        </div><!--/.article -->
       {{/each}}
     </div><!--/.row -->
 
