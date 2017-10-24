@@ -72,10 +72,8 @@ app.get("/scrape", function(req, res) {
         })
         //sends back error
         .catch(function(err) {
-        // res.json(err);
-        console.log(err);
+        res.json(err);
         });
-
     });
     res.redirect("/");
   });

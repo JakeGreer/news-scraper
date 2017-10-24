@@ -1,0 +1,31 @@
+body {
+    background-color: #343a40!important;
+}
+
+.jumbotron {
+    border-bottom: 1px solid black;
+    margin-bottom: 0!important;
+}
+
+.title {
+    font-size: 25px;
+    color: black;
+}
+
+.article .title {
+    text-decoration: none;
+    color: black!important;
+}
+
+.article {
+    padding: 40px;
+
+}
+
+.article:nth-child(odd) {
+    background: #fff;
+}
+
+.article:nth-child(even) {
+    background: #eee;
+}

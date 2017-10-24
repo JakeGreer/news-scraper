@@ -1,13 +1,14 @@
-<div id="articles" class="articles-container">
+<div id="articles" class="articles">
 {{#if articles}}
     <div class="row">
       {{#each articles}}
         <div class="article col-md-12" data-id="{{this._id}}">
             <div class="news-section">
-              <span class="title"><a href="{{this.link}}">{{this.title}}</a></span>
-              <a href="{{this.link}}" target="_blank">View Article</a>
+              <span><a class="title" href="{{this.link}}">{{this.title}}</a></span>
             </div><!--/.news-section -->
             <div class="card-action">
+              <a href="{{this.link}}" target="_blank">View Article</a>
+              ||
               <a href="#" class="btn-save">Save Article</a>
             </div>
         </div><!--/.article -->
@@ -17,12 +18,10 @@
 {{else}}
 
   <div class="row">
-    <div class="col s12">
-      <div class="card-panel text-center">
+    <div class="col-md-12 text-center">
         <span>There are no Articles</span>
-      </div><!--/.card -->
-    </div><!--/.article-item -->
+    </div>
   </div><!-- /.row -->
 
 {{/if}}
-</div><!-- /.articles-container -->
+</div><!-- /.articles -->
