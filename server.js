@@ -105,7 +105,7 @@ app.put("/unsave/:id", function(req, res) {
       saved: false 
     }
   ).then(function(results) {
-    res.json(results);
+    res.render('saved', { articles: results } );
   })
   .catch(function(err) {
     res.json(err);
@@ -119,7 +119,6 @@ app.get("/saved", function(req, res) {
       saved: true 
     }
   ).then(function(results) {
-    console.log(results);
     res.render('saved', { articles: results } );
   })
   .catch(function(err) {

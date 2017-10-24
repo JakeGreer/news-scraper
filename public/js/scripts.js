@@ -5,8 +5,8 @@ $(document).ready(function() {
   })
 
   // Save an article
-  $(document).on("click", ".save", function(e){
-    e.preventDefault();
+  $(document).on("click", ".save", function(event){
+    event.preventDefault();
 
     // Get the id of the data attribute from the parent div
     var id = $(this).parents('.article').data("id");
@@ -15,12 +15,16 @@ $(document).ready(function() {
       $.ajax({
         method: "PUT",
         url: "/save/" + id,
+      }).then(function(data) {
+        if (data.saved) {
+          $("[data-id='" + data._id + "']").remove();
+        }
       });
   });
 
   // UnSave an article
-  $(document).on("click", ".unsave", function(e){
-    e.preventDefault();
+  $(document).on("click", ".unsave", function(event){
+    event.preventDefault();
 
     // Get the id of the data attribute from the parent div
     var id = $(this).parents('.article-item').data("id");
