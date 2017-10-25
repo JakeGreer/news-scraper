@@ -64,7 +64,7 @@ app.get("/scrape", function(req, res) {
       // Save the text of the element in a "title" variable
       article.title = $(element).text();
       // Save the href into the link variable
-      article.link = $(element).parent().attr("href");
+      article.link = "http://abc7.com/news/" + $(element).parent().attr("href");
 
       // Insert the data in the articles collection in the mongoDB
       db.Article.create(article)
@@ -105,7 +105,8 @@ app.put("/unsave/:id", function(req, res) {
       saved: false 
     }
   ).then(function(results) {
-    res.render('saved', { articles: results } );
+    console.log(results);
+    res.json(results);
   })
   .catch(function(err) {
     res.json(err);

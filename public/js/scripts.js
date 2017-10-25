@@ -16,7 +16,7 @@ $(document).ready(function() {
         method: "PUT",
         url: "/save/" + id,
       }).then(function(data) {
-        if (data.saved) {
+        if (data) {
           $("[data-id='" + data._id + "']").remove();
         }
       });
@@ -27,14 +27,14 @@ $(document).ready(function() {
     event.preventDefault();
 
     // Get the id of the data attribute from the parent div
-    var id = $(this).parents('.article-item').data("id");
+    var id = $(this).parents('.article').data("id");
 
     // Ajax PUT request for the unsave route
     $.ajax({
       method: "PUT",
       url: "/unsave/" + id,
     }).then(function(data) {
-      if (data.saved) {
+      if (data) {
         $("[data-id='" + data._id + "']").remove();
       }
     });
