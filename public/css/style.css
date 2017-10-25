@@ -3,8 +3,17 @@ body {
 }
 
 .jumbotron {
+    background-image: url('../images/LosAngeles.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     border-bottom: 1px solid black;
     margin-bottom: 0!important;
+}
+
+.jumbotron h1 {
+    color: #fff;
+    font-size: 45px;
+    text-shadow: 4px 4px 2px black;
 }
 
 .title {
@@ -19,7 +28,6 @@ body {
 
 .article {
     padding: 40px;
-
 }
 
 .article:nth-child(odd) {
@@ -37,5 +45,11 @@ body {
 
 #default-message {
     font-size: 30px;
-    color:#fff;
+    color: #fff;
+}
+
+.btn-default a {
+    color: #80490A;
+    text-decoration: none;
+    font-weight: bold;
 }
