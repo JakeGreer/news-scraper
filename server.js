@@ -12,46 +12,47 @@ var db = require("./models");
 // Initialize Express
 var app = express();
 
-// Handlebars
+// Initialize Handlebars
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(express.static("public"));
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
-// Connect to the Mongo DB
+// Connect to the MongoDB
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/mongoscraper", {
   useMongoClient: true
 });
 
-// Routes
+// Home Route. Shows the previously scraped articles that haven't been saved yet.
 app.get("/", function(req, res) {
-  db.Article
-  .find({saved: false})
-  .then(function(results) {
+  db.Article.find(
+    {
+      saved: false
+    }
+  ).then(function(results) {
     res.render('index', { articles: results } );
   })
   .catch(function(err) {
-    // If an error occurred, send it to the client
+    // Catches any errors that occurred and sends the it back.
     res.json(err);
   });
 });
 
-// Retrieve data from the db
+// Retrieve data from the mongoDB
 app.get("/all", function(req, res) {
-  db.Article
-  .find({})
+  db.Article.find({})
   .then(function(results) {
-    // If we were able to successfully find Articles, send them back to the client
+    //Finds any articles that exist and outputs Json results.
     res.json(results);
   })
   .catch(function(err) {
-    // If an error occurred, send it to the client
+    // Catches any errors that occurred and sends the it back.
     res.json(err);
   });
 });
 
-// Scrape data and place it into the mongodb
+// Scrape data and place it into the mongoDB
 app.get("/scrape", function(req, res) {
 
   request("http://abc7.com/news/", function(error, response, html) {
@@ -65,6 +66,8 @@ app.get("/scrape", function(req, res) {
       article.title = $(element).text();
       // Save the href into the link variable
       article.link = "http://abc7.com/news/" + $(element).parent().attr("href");
+      // Save an image src if one exists
+      article.image = $(element).attr("src");
 
       // Insert the data in the articles collection in the mongoDB
       db.Article.create(article)
@@ -129,5 +132,5 @@ app.get("/saved", function(req, res) {
 
 // Set the app to listen on port 3000
 app.listen(3000, function() {
-  console.log("App running on port 3000!");
+  console.log("App running on port 3000");
 });
