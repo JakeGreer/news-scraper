@@ -20,10 +20,15 @@
       {{#each articles}}
         <div class="article col-md-12" data-id="{{this._id}}">
             <div class="news-section">
-              <img src="{{this.image}}" alt="no image available">
-              <span><a class="title" href="{{this.link}}">{{this.title}}</a></span>
+              <div class="col-md-12">
+                {{#if this.image}}
+                <img src="{{this.image}}" height="300px" alt="image">
+                <p></p>
+                {{/if}}
+                <span><a class="title" href="{{this.link}}">{{this.title}}</a></span>
+              </div>
             </div><!--/.news-section -->
-            <div class="article-links">
+            <div class="article-links col-md-12">
               <a href="{{this.link}}" target="_blank">View Article</a>
               ||
               <a href="#" class="save" data-toggle="modal" data-target="#myModal">Save Article</a>
@@ -36,7 +41,7 @@
 
   <div class="row">
     <div class="col-md-12 text-center">
-        <span>There are no Articles</span>
+        <span id="default-message">There are no Articles</span>
     </div>
   </div><!-- /.row -->
 
