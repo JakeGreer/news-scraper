@@ -5,7 +5,7 @@ var cheerio = require("cheerio");
 var exphbs = require('express-handlebars');
 var express = require("express");
 var PORT       = process.env.PORT || 3000;
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoscraper";
+var MONGODB_URI = process.env.MONGODB_CRIMSON_URI || "mongodb://localhost/mongoscraper";
 
 
 // Require the models
