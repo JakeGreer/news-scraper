@@ -4,6 +4,8 @@ var bodyParser = require('body-parser')
 var cheerio = require("cheerio");
 var exphbs = require('express-handlebars');
 var express = require("express");
+var PORT       = process.env.PORT || 3000;
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoscraper";
 
 
 // Require the models
@@ -20,8 +22,8 @@ app.use(express.static("public"));
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the MongoDB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/mongoscraper", {
-    useMongoClient: true
+mongoose.connect(MONGODB_URI, {
+  useMongoClient: true
 });
 
 // Home Route. Shows the previously scraped articles that haven't been saved yet.
@@ -53,21 +55,7 @@ app.get("/all", function(req, res) {
 // Scrape data and place it into the mongoDB
 app.get("/scrape", function(req, res) {
 
-<<<<<<< HEAD
-  request("http://abc7.com/news/", function(error, response, html) {
-    // Load the html body from request into cheerio
-    var $ = cheerio.load(html);
-    // For each element with a "headline" class
-    $(".headline").each(function(i, element) {
-      // Crete an empty object to hold the article title and image
-      var article = {};
-      // Save the text of the element in a "title" variable
-      article.title = $(element).text();
-      // Save the href into the link variable
-      article.link = "http://abc7.com/news/" + $(element).parent().attr("href");
-      // Save an image src if one exists
-      article.image = $(element).siblings().attr("src");
-=======
+
     request("http://abc7.com/news/", function(error, response, html) {
         // Load the html body from request into cheerio
         var $ = cheerio.load(html);
@@ -81,7 +69,6 @@ app.get("/scrape", function(req, res) {
             article.link = "http://abc7.com/news/" + $(element).children().attr("href");
             // Save an image src if one exists
             article.image = $(element).children().children(".image").children().attr("src");
->>>>>>> 1b8ae5a2e941867e2cc2a7ae295edfbf8deae49e
 
             // Insert the data in the articles collection in the mongoDB
             db.Article.create(article)
