@@ -14,7 +14,7 @@ var ArticleSchema = new Schema({
   },
   image: {
     type: String,
-    required: false
+    required: true
   },
   saved: {
     type: Boolean,

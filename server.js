@@ -67,7 +67,7 @@ app.get("/scrape", function(req, res) {
       // Save the href into the link variable
       article.link = "http://abc7.com/news/" + $(element).parent().attr("href");
       // Save an image src if one exists
-      article.image = $(element).attr("src");
+      article.image = $(element).siblings().attr("src");
 
       // Insert the data in the articles collection in the mongoDB
       db.Article.create(article)
