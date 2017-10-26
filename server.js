@@ -14,6 +14,9 @@ var db = require("./models");
 // Initialize Express
 var app = express();
 
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // Initialize Handlebars
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
