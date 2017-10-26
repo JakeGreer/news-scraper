@@ -5,7 +5,7 @@ var cheerio = require("cheerio");
 var exphbs = require('express-handlebars');
 var express = require("express");
 var PORT       = process.env.PORT || 3000;
-var MONGODB_URI = process.env.MONGODB_URI || MONGOLAB_PURPLE_URI || "mongodb://localhost/mongoscraper";
+var MONGODB_URI = MONGOLAB_PURPLE_URI || "mongodb://localhost/mongoscraper";
 
 
 // Require the models
@@ -25,7 +25,7 @@ app.use(express.static("public"));
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the MongoDB
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI || MONGOLAB_PURPLE_URI, {
+mongoose.connect(MONGOLAB_PURPLE_URI, {
   useMongoClient: true
 });
 
